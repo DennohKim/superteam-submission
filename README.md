@@ -29,6 +29,7 @@ This project is a React application that visualizes the a summary of solana metr
 
 ## Demo
 
+[Solona Metrics Dashboard Demo Video](https://share.vidyard.com/watch/naMcXT5MiVssMXfgX5xnJv?)
 
 
 ## Getting Started
