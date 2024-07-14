@@ -42,7 +42,7 @@ export default async function Home() {
       </div>
 
       {/* Solana charts*/}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div>
           <h2 className="font-bold py-4">Solana DEX Volumes</h2>
           <SolanaDexVolume DexVolumeData={solanaDexVolumeData} />

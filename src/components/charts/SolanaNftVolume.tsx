@@ -26,6 +26,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { SolanaNftVolumeData } from "@/types/data";
+import { formatLargeNumber } from "@/lib/utils";
 
 
 const chartConfig = {
@@ -91,7 +92,7 @@ groupedData.sort((a, b) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Solana NFT Volumes in USD</CardTitle>
+        <CardDescription>Solana NFT Volumes in USD</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -103,6 +104,9 @@ groupedData.sort((a, b) => {
               tickMargin={10}
               axisLine={false}
               tickFormatter={(value) => value.split(' ')[0].slice(0, 3) + ' ' + value.split(' ')[1].slice(-2)}
+            />
+             <YAxis
+              tickFormatter={(value) => formatLargeNumber(value as number)}
             />
            
             <ChartTooltip formatter={(value) => formatCurrency(value as number)} />
