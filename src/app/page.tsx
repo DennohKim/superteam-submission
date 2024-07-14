@@ -5,6 +5,11 @@ import { SolanaPriceChart } from "@/components/charts/SolanaPriceChart";
 import { SolanaDexVolume } from "@/components/charts/SolanaDexVolume";
 import { getNftVolume } from "./actions/getSolanaNftVolume";
 import { SolanaNftVolume } from "@/components/charts/SolanaNftVolume";
+import { DataTable } from "@/components/table/data-table";
+import { z } from "zod";
+import { actionSchema } from "@/components/table/schema";
+import { columns } from "@/components/table/columns";
+
 
 export default async function Home() {
   const solanaDexVolumeData = await getSolanaDexVolumeData({
@@ -16,8 +21,17 @@ export default async function Home() {
     limit: 3,
     queryId: 3915819,
   });
+  const solanaPairDexVolumesData = await getSolanaDexVolumeData({
+    limit: 1000,
+    queryId: 3916186,
+  });
 
-  console.log(solanaNftVolumeData);
+
+  const actions = solanaPairDexVolumesData.result.rows.map((result) => {
+    const action = actionSchema.parse(result);
+    return action;
+  });
+
 
   return (
     <main className="max-w-7xl mx-auto flex flex-col py-12 px-8 space-y-4">
@@ -40,8 +54,8 @@ export default async function Home() {
       </div>
 
       <div>
-        <h2 className="font-bold py-4">Solana  </h2>
-        <MetricsSummary MetricsSummaryData={solanaMetricsSummaryData} />
+        <h2 className="font-bold py-4">Solana DEX Pair Volume Stats </h2>
+        <DataTable data={actions} columns={columns} link_names={true}/>
       </div>
     </main>
   );

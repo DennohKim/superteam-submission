@@ -30,7 +30,7 @@ interface SolanaDexVolumeRow {
   time: string;
 }
 
-interface SolanaStatsRow {
+interface SolanaDexPairsVolumeRow {
   avg_non_vote_txs: number;
   avg_vote_txs: number;
   blocks_per_minute: number;
@@ -69,8 +69,8 @@ export interface SolanaDexVolumeData extends BaseData {
   result: Result<SolanaDexVolumeRow>;
 }
 
-export interface SolanaStatsData extends BaseData {
-  result: Result<SolanaStatsRow>;
+export interface SolanaDexPairsVolumeData  extends BaseData {
+  result: Result<SolanaDexPairsVolumeRow>;
 }
 
 export interface SolanaMetricsSummaryData extends BaseData {

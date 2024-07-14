@@ -1,4 +1,4 @@
-import { SolanaMetricsSummaryData } from "@/types/data";
+import { SolanaDexPairsVolumeData, SolanaMetricsSummaryData } from "@/types/data";
 
 interface SolanaStatsProps {
     limit: number;
@@ -7,7 +7,7 @@ interface SolanaStatsProps {
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
-export async function getMetricsSummary({ limit, queryId }: SolanaStatsProps) {
+export async function getDexPairsVolume({ limit, queryId }: SolanaStatsProps) {
     const url = `${baseUrl}${queryId}/results?limit=${limit}`;
     const headers = new Headers();
     headers.set('X-Dune-API-Key', process.env.NEXT_PUBLIC_X_DUNE_API_KEY!);
@@ -20,9 +20,9 @@ export async function getMetricsSummary({ limit, queryId }: SolanaStatsProps) {
         throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
     }
 
-    const solanaMetricsSummaryData: SolanaMetricsSummaryData = await response.json();
+    const solanaDexPairsVolumeData: SolanaDexPairsVolumeData = await response.json();
 
-    return solanaMetricsSummaryData;
+    return solanaDexPairsVolumeData;
 }
 
 
