@@ -58,11 +58,17 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
+type ChartConfigKey = keyof typeof chartConfig;
+
+
 const formatCurrency = (value: number) => {
     return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
   };
 
-
+  interface GroupedDataItem {
+    month: string;
+    [key: string]: number | string;
+  }
 
 export function SolanaDexVolume({
   DexVolumeData,
@@ -72,7 +78,7 @@ export function SolanaDexVolume({
     console.log(DexVolumeData);
 
   const groupedData = DexVolumeData.result.rows.reduce(
-    (acc, { amount_usd, project, time }) => {
+    (acc: GroupedDataItem[], { amount_usd, project, time }) => {
         const date = new Date(time);
         const month = date.toLocaleString('default', { month: 'long' });
         const year = date.getFullYear();
@@ -80,7 +86,7 @@ export function SolanaDexVolume({
         const existingMonthYear = acc.find(item => item.month === monthYear);
       
         if (existingMonthYear) {
-          existingMonthYear[project] = (existingMonthYear[project] || 0) + amount_usd;
+            existingMonthYear[project] = ((existingMonthYear[project] as number) || 0) + amount_usd;
         } else {
           acc.push({ month: monthYear, [project]: amount_usd });
         }
@@ -124,8 +130,8 @@ groupedData.sort((a, b) => {
                 key={key}
                 dataKey={key}
                 stackId="a"
-                fill={chartConfig[key].color}
-                name={chartConfig[key].label}
+                fill={chartConfig[key as ChartConfigKey].color}
+                name={chartConfig[key as ChartConfigKey].label}
               />
             ))}
           </BarChart>

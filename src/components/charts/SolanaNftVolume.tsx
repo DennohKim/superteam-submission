@@ -40,12 +40,19 @@ const chartConfig = {
   
 } satisfies ChartConfig;
 
+type ChartConfigKey = keyof typeof chartConfig;
+
+interface GroupedDataItem {
+  month: string;
+  [key: string]: number | string;
+}
+
+
 const formatCurrency = (value: number) => {
     return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
   };
 
-
-
+ 
 export function SolanaNftVolume({
   SolanaNftVolumeData,
 }: {
@@ -54,7 +61,7 @@ SolanaNftVolumeData: SolanaNftVolumeData;
     console.log(SolanaNftVolumeData);
     
   const groupedData = SolanaNftVolumeData.result.rows.reduce(
-    (acc, { volume, project, time }) => {
+    (acc: GroupedDataItem[], { volume, project, time }) => {
         const date = new Date(time);
         const month = date.toLocaleString('default', { month: 'long' });
         const year = date.getFullYear();
@@ -62,7 +69,7 @@ SolanaNftVolumeData: SolanaNftVolumeData;
         const existingMonthYear = acc.find(item => item.month === monthYear);
       
         if (existingMonthYear) {
-          existingMonthYear[project] = (existingMonthYear[project] || 0) + volume;
+          existingMonthYear[project] = (existingMonthYear[project] as number || 0) + volume;
         } else {
           acc.push({ month: monthYear, [project]: volume });
         }
@@ -106,8 +113,8 @@ groupedData.sort((a, b) => {
                 key={key}
                 dataKey={key}
                 stackId="a"
-                fill={chartConfig[key].color}
-                name={chartConfig[key].label}
+                fill={chartConfig[key as ChartConfigKey].color}
+                name={chartConfig[key as ChartConfigKey].label}
               />
             ))}
           </AreaChart>
