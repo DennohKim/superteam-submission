@@ -1,6 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+# Solana Metrics Dashboard
+
+This project is a React application that visualizes the a summary of solana metrics such as SOL Price, FDV, SOL stake supply, total validators, SOL Total Supply, Active validators, trading volumes of Solana DEXs and NFTs as well as . It uses the `recharts` library to create interactive and responsive charts, and TypeScript for type safety. The data for the charts is fetched and processed to show the volumes in a user-friendly format.
+
+## Table of Contents
+
+- [App Screenshot](#screenshot)
+- [Features](#features)
+- [Demo](#app-demo)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the App](#running-the-app)
+- [Tech Stack](#tech-stack)
+- [License](#license)
+
+## App Screenshot
+![Solana Metrics App Screenshot](./app_screenshot.png)
+
+
+## Features
+
+- Visualizes a summary of Solana metrics such as  SOL Price, FDV, SOL stake supply, total validators, SOL Total Supply, Active validators
+- Visualizes Solana DEX trading volumes.
+- Visualizes Solana NFT trading volumes.
+- Interactive charts with tooltips, legends, and formatted axes.
+- Interactive table displaying Solana DEX Pair Volume Stats 
+
+## Demo
+
+
 
 ## Getting Started
+
+### Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- [Node.js](https://nodejs.org/en/download/) (version 14 or later)
+- [npm](https://www.npmjs.com/get-npm) or [yarn](https://yarnpkg.com/getting-started/install)
+
+### Installation
+
+1. Installing the app locally:
+
+ ```bash
+   git clone https://github.com/DennohKim/superteam-submission.git
+   cd superteam-submission
+   npm i
+   ```
+
+
+### Running the App 
 
 First, run the development server:
 
@@ -16,21 +67,19 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [Dune Analytics API](https://dune.com/product/api)
+- [Recharts](https://recharts.org/)
+- [React](https://react.dev/)
+- [NextJS](https://nextjs.org/)
+- [Shadcn UI](https://ui.shadcn.com/)
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
